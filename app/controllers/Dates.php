@@ -27,41 +27,21 @@
                     'difference' => ''
                 ];
 
+                $data[] = match($data['returnformat']){
+                    'weeks' => $data['difference'] = $this->dateModel->weeks($data),
+                    'years' => $data['difference'] = $this->dateModel->years($data),
+                    default => $data['difference'] = $this->dateModel->days($data),
+                };
 
-                
-                if($data['returnformat'] == 'days'){
-                    $diff = [
-                        'difference' => $this->dateModel->days($data),
-                        'returnformat' => 'Days'
-                        ];
-                }
-                if($data['returnformat'] == 'weeks'){
-                    $diff = [
-                        'difference' => $this->dateModel->weeks($data),
-                        'returnformat' => 'Weeks'
-                        ];
-                }
-                if($data['returnformat'] == 'years'){
-                    $diff = [
-                        'difference' => $this->dateModel->years($data),
-                        'returnformat' => 'Years'
-                    ];
-                }
-                else{
-                    $diff = [
-                        'difference' => $this->dateModel->days($data),
-                        'returnformat' => 'DEFAULTED TO DAYS'
-                    ];
-                }
-
-                $this->view('dates/difference', $diff);
+                $this->view('dates/difference', $data);
             }
 
             else{
                 $data = [
                     'returnformat' => '',
                     'startdate' => '',
-                    'enddate' => ''
+                    'enddate' => '',
+                    'difference' => ''
                 ];
                 $this->view('dates', $data);
             }
