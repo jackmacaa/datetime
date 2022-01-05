@@ -8,6 +8,6 @@
     // App Root
     define('APPROOT', dirname(__FILE__, 2));
     // URL Root
-    const URLROOT = 'YOUR_URL';
+    const URLROOT = 'http://localhost:8080/datetime';
     // Site Name
-    const SITENAME = 'YOUR_SITENAME';
+    const SITENAME = 'datetime';
