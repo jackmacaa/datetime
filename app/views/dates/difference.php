@@ -10,6 +10,10 @@
     </h2>
     <p><?= $data['difference']; ?></p>
     <a href="<?= URLROOT; ?>/dates">Back</a>
+
+    <?php
+        echo json_encode($data);
+    ?>
 </div>
 
 <?php require APPROOT . '/views/inc/footer.php'; ?>
