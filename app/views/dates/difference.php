@@ -1,8 +1,8 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
 <div class="container">
-    <h1>result between two dates in days</h1>
-    <p><?= $data ?></p>
+    <h2>result between two dates returned in <?= $data['returnformat']; ?></h2>
+    <p><?= $data['difference']; ?></p>
     <a href="<?= URLROOT; ?>/dates">Back</a>
 </div>
 

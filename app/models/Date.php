@@ -30,6 +30,17 @@
             return floor($days / 7);
 
         }
+
+        public function years($data){
+
+            $date1 = strtotime($data['startdate']);
+            $date2 = strtotime($data['enddate']);
+
+            $diff = abs($date2 - $date1);
+
+            return $years = floor($diff / (365 * 60 * 60 * 24));
+
+        }
     }
 /*$date1 = strtotime("2019-06-01 12:00:00");
 $date2 = strtotime("2021-09-21 12:00:00");
