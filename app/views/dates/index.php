@@ -8,11 +8,8 @@
         <form action="<?php echo URLROOT; ?>/dates/difference" method="post">
 
             <div class="form-group">
-                <label >Will get result in number of days between the dates</label>
-            </div>
-            <div class="form-group">
-                <label for="returnformat">Return format: (days, weeks or years) if nothing is entered days will be returned. <sup>*</sup></label>
-                <input type="text" name="returnformat" class="form-control form-control-lg" placeholder="e.g. days">
+                <label for="returnformat">Return format: (days, weeks or years) default is days</label>
+                <input type="text" name="returnformat" class="form-control form-control-lg" placeholder="days">
             </div>
 
             <div class="form-group">

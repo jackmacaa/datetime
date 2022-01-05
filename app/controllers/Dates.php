@@ -23,8 +23,7 @@
                 $data = [
                     'returnformat' => trim($_POST['returnformat']),
                     'startdate' => trim($_POST['startdate']),
-                    'enddate' => trim($_POST['enddate']),
-                    'difference' => ''
+                    'enddate' => trim($_POST['enddate'])
                 ];
 
                 $data[] = match($data['returnformat']){
@@ -35,17 +34,13 @@
 
                 $this->view('dates/difference', $data);
             }
-
             else{
                 $data = [
                     'returnformat' => '',
                     'startdate' => '',
-                    'enddate' => '',
-                    'difference' => ''
+                    'enddate' => ''
                 ];
                 $this->view('dates', $data);
             }
-
         }
-
     }
