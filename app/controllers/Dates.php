@@ -1,7 +1,7 @@
 <?php
     class Dates extends Controller
     {
-        private mixed $dateModel;
+        private Date $dateModel;
 
         public function __construct()
         {
@@ -12,42 +12,40 @@
         {
             $data = [
                 'title' => 'Date Time App',
-
             ];
 
             $this->view('dates/index', $data);
         }
 
-        public function days(){
+        public function difference(){
             if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
                 $data = [
+                    'returnformat' => trim($_POST['returnformat']),
                     'startdate' => trim($_POST['startdate']),
-                    'enddate' => trim($_POST['enddate'])
+                    'enddate' => trim($_POST['enddate']),
+                    'difference' => ''
                 ];
 
-                $days = $this->dateModel->days($data);
+                $data[] = match($data['returnformat']){
+                    'weeks' => $data['difference'] = $this->dateModel->weeks($data),
+                    'years' => $data['difference'] = $this->dateModel->years($data),
+                    default => $data['difference'] = $this->dateModel->days($data),
+                };
 
-                $this->view('dates/days', $days);
+                $this->view('dates/difference', $data);
             }
 
-        }
-
-        public function weeks(){
-            if($_SERVER['REQUEST_METHOD'] == 'POST'){
-
+            else{
                 $data = [
-                    'startdate' => trim($_POST['startdate']),
-                    'enddate' => trim($_POST['enddate'])
+                    'returnformat' => '',
+                    'startdate' => '',
+                    'enddate' => '',
+                    'difference' => ''
                 ];
-
-                $weeks = $this->dateModel->weeks($data);
-
-                $this->view('dates/weeks', $weeks);
+                $this->view('dates', $data);
             }
 
         }
-
-
 
     }
