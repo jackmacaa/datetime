@@ -12,6 +12,9 @@
         {
             $data = [
                 'title' => 'Date Time App',
+                'returnformat' => '',
+                'startdate' => '',
+                'enddate' => ''
             ];
 
             $this->view('dates/index', $data);
@@ -23,24 +26,47 @@
                 $data = [
                     'returnformat' => trim($_POST['returnformat']),
                     'startdate' => trim($_POST['startdate']),
-                    'enddate' => trim($_POST['enddate'])
+                    'enddate' => trim($_POST['enddate']),
+                    'returnformat_err' => '',
+                    'startdate_err' => '',
+                    'enddate_err' => ''
                 ];
 
-                $data[] = match($data['returnformat']){
-                    'weeks' => $data['difference'] = $this->dateModel->weeks($data),
-                    'years' => $data['difference'] = $this->dateModel->years($data),
-                    default => $data['difference'] = $this->dateModel->days($data),
-                };
+                // check if inputs are empty
+                if(empty($data['returnformat'])){
+                    $data['returnformat_err'] = 'Please enter a return format';
+                }
+                if(empty($data['startdate'])){
+                    $data['startdate_err'] = 'Please enter a start date';
+                }
+                if(empty($data['enddate'])){
+                    $data['enddate_err'] = 'Please enter an end date';
+                }
 
-                $this->view('dates/difference', $data);
-            }
-            else{
+                // check if any _err exists and if not running the corresponding function
+                if(empty($data['returnformat_err']) && empty($data['startdate_err']) && empty($data['enddate_err'])){
+                    // checking what dateformat they asked for and running that function
+                    $data[] = match($data['returnformat']){
+                        'weeks' => $this->dateModel->weeks($data),
+                        'years' => $this->dateModel->years($data),
+                        default => $this->dateModel->days($data),
+                    };
+
+                    // returning the processed data to the differences page
+                    $this->view('dates/difference', $data);
+
+                } else{
+                    $this->view('dates/index', $data);
+                }
+
+            // Not sure if this will ever run
+            }else{
                 $data = [
                     'returnformat' => '',
                     'startdate' => '',
                     'enddate' => ''
                 ];
-                $this->view('dates', $data);
+                $this->view('dates/index', $data);
             }
         }
     }
