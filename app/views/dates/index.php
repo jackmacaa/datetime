@@ -28,6 +28,7 @@
             <input type="submit" class="btn btn-success" value="Submit">
         </form>
     </div>
+
     <div class="card card-body bg-light mt-5">
         <h2>Accepted date formats</h2>
         <ul>

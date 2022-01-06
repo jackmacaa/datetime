@@ -35,4 +35,25 @@
 
             return floor(($this->diff + $years * 365 * 60 * 60 * 24 + $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
         }
+
+        public function weekDays($data):int{
+            $date1 = new DateTime($data['startdate']);
+            $date2 = new DateTime($data['enddate']);
+            $days = 0;
+            $weekend = ['Sat', 'Sun'];
+
+            while($date1 < $date2)
+            {
+                $date1->modify('+1 day');
+                $day = $date1->format('D');
+
+                if($day != $weekend[0] && $day != $weekend[1])
+                {
+                    $days++;
+                }
+            }
+
+            return $days;
+        }
+
     }

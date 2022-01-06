@@ -49,6 +49,7 @@
                     $data[] = match($data['returnformat']){
                         'weeks' => $this->dateModel->weeks($data),
                         'years' => $this->dateModel->years($data),
+                        'weekdays' => $this->dateModel->weekDays($data),
                         default => $this->dateModel->days($data),
                     };
 
