@@ -6,21 +6,17 @@
         protected string $diff;
 
         public function years($data):int{
-
             $this->date1 = strtotime($data['startdate']);
             $this->date2 = strtotime($data['enddate']);
-
             $this->diff = abs($this->date2 - $this->date1);
 
             return floor($this->diff / (365 * 60 * 60 * 24));
         }
 
         public function weeks($data):int{
-
             $this->date1 = strtotime($data['startdate']);
             $this->date2 = strtotime($data['enddate']);
-
-            $this->diff= abs($this->date2 - $this->date1);
+            $this->diff = abs($this->date2 - $this->date1);
 
             $years = floor($this->diff / (365 * 60 * 60 * 24));
             $months = floor(($this->diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
@@ -30,10 +26,8 @@
         }
 
         public function days($data):int{
-
             $this->date1 = strtotime($data['startdate']);
             $this->date2 = strtotime($data['enddate']);
-
             $this->diff = abs($this->date2 - $this->date1);
 
             $years = floor($this->diff / (365 * 60 * 60 * 24));
