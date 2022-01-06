@@ -1,44 +1,44 @@
 <?php
     class Date
     {
-        public function days($data){
+        protected string $date1;
+        protected string $date2;
+        protected string $diff;
 
-            $date1 = strtotime($data['startdate']);
-            $date2 = strtotime($data['enddate']);
+        public function years($data):int{
 
-            $diff = abs($date2 - $date1);
+            $this->date1 = strtotime($data['startdate']);
+            $this->date2 = strtotime($data['enddate']);
 
-            $years = floor($diff / (365 * 60 * 60 * 24));
-            $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
-            $days = floor(($diff + $years * 365 * 60 * 60 * 24 + $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+            $this->diff = abs($this->date2 - $this->date1);
 
-            return $days;
-
+            return floor($this->diff / (365 * 60 * 60 * 24));
         }
 
-        public function weeks($data){
+        public function weeks($data):int{
 
-            $date1 = strtotime($data['startdate']);
-            $date2 = strtotime($data['enddate']);
+            $this->date1 = strtotime($data['startdate']);
+            $this->date2 = strtotime($data['enddate']);
 
-            $diff = abs($date2 - $date1);
+            $this->diff= abs($this->date2 - $this->date1);
 
-            $years = floor($diff / (365 * 60 * 60 * 24));
-            $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
-            $days = floor(($diff + $years * 365 * 60 * 60 * 24 + $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+            $years = floor($this->diff / (365 * 60 * 60 * 24));
+            $months = floor(($this->diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+            $days = floor(($this->diff + $years * 365 * 60 * 60 * 24 + $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
 
             return floor($days / 7);
-
         }
 
-        public function years($data){
+        public function days($data):int{
 
-            $date1 = strtotime($data['startdate']);
-            $date2 = strtotime($data['enddate']);
+            $this->date1 = strtotime($data['startdate']);
+            $this->date2 = strtotime($data['enddate']);
 
-            $diff = abs($date2 - $date1);
+            $this->diff = abs($this->date2 - $this->date1);
 
-            return $years = floor($diff / (365 * 60 * 60 * 24));
+            $years = floor($this->diff / (365 * 60 * 60 * 24));
+            $months = floor(($this->diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
 
+            return floor(($this->diff + $years * 365 * 60 * 60 * 24 + $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
         }
     }
