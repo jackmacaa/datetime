@@ -47,10 +47,8 @@
                 if(empty($data['returnformat_err']) && empty($data['startdate_err']) && empty($data['enddate_err'])){
                     // checking what dateformat they asked for and running that function
                     $data[] = match($data['returnformat']){
-                        'weeks' => $this->dateModel->weeks($data),
-                        'years' => $this->dateModel->years($data),
                         'weekdays' => $this->dateModel->weekDays($data),
-                        default => $this->dateModel->days($data),
+                        default => $this->dateModel->dateDifference($data),
                     };
 
                     // returning the processed data to the differences page
