@@ -7,10 +7,7 @@
         <h4>Start date timezone: <?= $data['startdate-timezone']; ?></h4>
         <h4>End date timezone: <?= $data['enddate-timezone']; ?></h4>
         <h3><strong><?= $data[0]; ?></strong>
-            <?php if($data['returnformat'] == 'days' ||
-                $data['returnformat'] == 'weeks' ||
-                $data['returnformat'] == 'years' ||
-                $data['returnformat'] == 'weekdays') : ?>
+            <?php if(in_array($data['returnformat'], ['days', 'weeks', 'years', 'weekdays'])) : ?>
                 <?= $data['returnformat']; ?>
             <?php else: ?>
                 <?= 'Default : Days' ?>

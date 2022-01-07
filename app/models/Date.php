@@ -1,9 +1,9 @@
 <?php
     class Date
     {
-        protected $date1;
-        protected $date2;
-        protected $diff;
+        protected DateTime $date1;
+        protected DateTime $date2;
+        protected DateInterval $diff;
 
         // made pointless by adding 2 if statements to controller...
         public function checkTimezone($date, $timezone):DateTime{
@@ -18,7 +18,7 @@
             return $setDate;
         }
 
-        public function dateDifference($data):string{
+        public function dateDifference(array $data):string{
             $this->date1 = new DateTime($data['startdate'], new DateTimeZone($data['startdate-timezone']));
             $this->date2 = new DateTime($data['enddate'], new DateTimeZone($data['enddate-timezone']));
 
@@ -33,7 +33,7 @@
             };
         }
 
-        public function weekDays($data):int{
+        public function weekDays(array $data):int{
             $this->date1 = new DateTime($data['startdate'], new DateTimeZone($data['startdate-timezone']));
             $this->date2 = new DateTime($data['enddate'], new DateTimeZone($data['enddate-timezone']));
 
