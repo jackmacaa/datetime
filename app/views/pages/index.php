@@ -17,6 +17,15 @@
                 <li>now</li>
             </ul>
         </div>
+        <div class="card card-body bg-light mt-3">
+            <a href="https://www.php.net/manual/en/timezones.php" target="_blank" ><h2>Accepted timezone formats</h2></a>
+            <ul>
+                <li>Country/City</li>
+                <li>Australia/Adelaide</li>
+                <li>US/Hawaii</li>
+                <li>America/Los_Angeles</li>
+            </ul>
+        </div>
     </div>
 
 <?php require APPROOT . '/views/inc/footer.php'; ?>

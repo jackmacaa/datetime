@@ -5,9 +5,38 @@
         protected $date2;
         protected $diff;
 
+        // made pointless by adding 2 if statements to controller...
+        public function checkTimezone($date, $timezone):DateTime{
+            $setDate = new DateTime();
+
+            if(empty($timezone)){
+                $setDate = new DateTime($date, new DateTimeZone('Australia/Adelaide'));
+            }
+            else{
+                $setDate= new DateTime($date, new DateTimeZone($timezone));
+            }
+            return $setDate;
+        }
+
+        public function dateDifference($data):string{
+            $this->date1 = new DateTime($data['startdate'], new DateTimeZone($data['startdate-timezone']));
+            $this->date2 = new DateTime($data['enddate'], new DateTimeZone($data['enddate-timezone']));
+
+            // Calc difference between the two dates
+            $this->diff = $this->date1->diff($this->date2);
+
+            // return to format the user asked for
+            return match($data['returnformat']){
+                'weeks' => floor(($this->diff->format('%a')) / 7),
+                'years' => $this->diff->format('%y'),
+                default => $this->diff->format('%a'),
+            };
+        }
+
         public function weekDays($data):int{
-            $this->date1 = new DateTime($data['startdate']);
-            $this->date2 = new DateTime($data['enddate']);
+            $this->date1 = new DateTime($data['startdate'], new DateTimeZone($data['startdate-timezone']));
+            $this->date2 = new DateTime($data['enddate'], new DateTimeZone($data['enddate-timezone']));
+
             $days = 0;
             $weekend = ['Sat', 'Sun'];
 
@@ -21,20 +50,5 @@
                 }
             }
             return $days;
-        }
-
-        public function dateDifference($data):string{
-            $this->date1 = new DateTime($data['startdate']);
-            $this->date2 = new DateTime($data['enddate']);
-
-            $this->diff = $this->date1->diff($this->date2);
-
-            $formatedDiff = match($data['returnformat']){
-                'weeks' => floor(($this->diff->format('%a')) / 7),
-                'years' => $this->diff->format('%y'),
-                default => $this->diff->format('%a'),
-            };
-
-            return $formatedDiff;
         }
     }
