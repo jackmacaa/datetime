@@ -8,9 +8,14 @@
         <form action="<?php echo URLROOT; ?>/dates/difference" method="post">
 
             <div class="form-group">
-                <label for="returnformat">Return format: (days, weeks or years) <sup>*</sup></label>
+                <label for="returnformat">Return format: (days, weekdays, weeks or years) <sup>*</sup></label>
                 <input type="text" name="returnformat" class="form-control form-control-lg <?=(!empty($data['returnformat_err'])) ? 'is-invalid' : '' ?>" value="<?= $data['returnformat']; ?>" placeholder="days">
                 <span class="invalid-feedback"><?= $data['returnformat_err']; ?></span>
+            </div>
+
+            <div class="form-group">
+                <label for="startdate-timezone">Start date timezone: (default is Australia/Adelaide)</label>
+                <input type="text" name="startdate-timezone" class="form-control form-control-lg" value="<?= $data['startdate-timezone']; ?>" placeholder="Europe/Bucharest">
             </div>
 
             <div class="form-group">
@@ -20,7 +25,12 @@
             </div>
 
             <div class="form-group">
-                <label for="enddate">End Date: <sup>*</sup></label>
+                <label for="enddate-timezone">End date timezone: </label>
+                <input type="text" name="enddate-timezone" class="form-control form-control-lg" value="<?= $data['enddate-timezone']; ?>">
+            </div>
+
+            <div class="form-group">
+                <label for="enddate">End date: <sup>*</sup></label>
                 <input type="text" name="enddate" class="form-control form-control-lg <?=(!empty($data['enddate_err'])) ? 'is-invalid' : '' ?>" value="<?= $data['enddate']; ?>">
                 <span class="invalid-feedback"><?= $data['enddate_err']; ?></span>
             </div>
@@ -29,7 +39,7 @@
         </form>
     </div>
 
-    <div class="card card-body bg-light mt-5">
+    <div class="card card-body bg-light mt-2">
         <h2>Accepted date formats</h2>
         <ul>
             <li>YYYY-MM-DD HH:MM:SS e.g. 2022-01-01 12:00:00</li>
@@ -41,6 +51,15 @@
             <li>next Thursday</li>
             <li>last Monday</li>
             <li>now</li>
+        </ul>
+    </div>
+    <div class="card card-body bg-light mt-2">
+        <a href="https://www.php.net/manual/en/timezones.php" target="_blank" ><h2>Accepted timezone formats</h2></a>
+        <ul>
+            <li>e.g. Country/City</li>
+            <li>Australia/Adelaide</li>
+            <li>US/Hawaii</li>
+            <li>America/Los_Angeles</li>
         </ul>
     </div>
 

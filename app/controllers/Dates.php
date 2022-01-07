@@ -13,7 +13,9 @@
             $data = [
                 'title' => 'Date Time App',
                 'returnformat' => '',
+                'startdate-timezone' => '',
                 'startdate' => '',
+                'enddate-timezone' => '',
                 'enddate' => ''
             ];
 
@@ -25,7 +27,9 @@
 
                 $data = [
                     'returnformat' => trim($_POST['returnformat']),
+                    'startdate-timezone' => trim($_POST['startdate-timezone']),
                     'startdate' => trim($_POST['startdate']),
+                    'enddate-timezone' => trim($_POST['enddate-timezone']),
                     'enddate' => trim($_POST['enddate']),
                     'returnformat_err' => '',
                     'startdate_err' => '',
@@ -42,15 +46,23 @@
                 if(empty($data['enddate'])){
                     $data['enddate_err'] = 'Please enter an end date';
                 }
+                if(empty($data['startdate-timezone'])){
+                    $data['startdate-timezone'] = 'Australia/Adelaide';
+                }
+                if(empty($data['enddate-timezone'])){
+                    $data['enddate-timezone'] = 'Australia/Adelaide';
+                }
+
+                // checks if input date is valid
 
                 // check if any _err exists and if not running the corresponding function
-                if(empty($data['returnformat_err']) && empty($data['startdate_err']) && empty($data['enddate_err'])){
+                if(empty($data['returnformat_err']) &&
+                    empty($data['startdate_err']) &&
+                    empty($data['enddate_err'])){
                     // checking what dateformat they asked for and running that function
                     $data[] = match($data['returnformat']){
-                        'weeks' => $this->dateModel->weeks($data),
-                        'years' => $this->dateModel->years($data),
                         'weekdays' => $this->dateModel->weekDays($data),
-                        default => $this->dateModel->days($data),
+                        default => $this->dateModel->dateDifference($data),
                     };
 
                     // returning the processed data to the differences page
