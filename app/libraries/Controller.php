@@ -3,6 +3,8 @@
      * Base Controller
      * Loads the model and views
      */
+/*namespace app\libraries;*/
+
     class Controller
     {
         // Load model

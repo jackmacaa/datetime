@@ -2,6 +2,7 @@
     // App Core Class
     // Creates URL and loads core controller
     // URL format will be /controller/method/params
+/*namespace app\libraries;*/
 
     class Core
     {

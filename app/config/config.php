@@ -1,9 +1,9 @@
 <?php
     // DB Params
     const DB_HOST = 'db';
-    const DB_USER = 'YOUR_USERNAME';
-    const DB_PASS = 'YOUR_PASS';
-    const DB_NAME = 'YOUR_DBNAME';
+    const DB_USER = 'root';
+    const DB_PASS = 'pass';
+    const DB_NAME = 'datetime_db';
 
     // App Root
     define('APPROOT', dirname(__FILE__, 2));
