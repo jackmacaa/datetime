@@ -7,6 +7,10 @@ use app\controllers\Dates;*/
         protected DateTime $date2;
         protected DateInterval $diff;
 
+        public function setUp($data){
+            $this->date1 = new DateTime($data['startdate'], new DateTimeZone($data['startdate-timezone']));
+            $this->date2 = new DateTime($data['enddate'], new DateTimeZone($data['enddate-timezone']));
+        }
         // made pointless by adding 2 if statements to controller...
         public function checkTimezone($date, $timezone):DateTime{
             $setDate = new DateTime();
@@ -21,9 +25,7 @@ use app\controllers\Dates;*/
         }
 
         public function dateDifference(array $data):string{
-            $this->date1 = new DateTime($data['startdate'], new DateTimeZone($data['startdate-timezone']));
-            $this->date2 = new DateTime($data['enddate'], new DateTimeZone($data['enddate-timezone']));
-
+           $this->setUp($data);
             // Calc difference between the two dates
             $this->diff = $this->date1->diff($this->date2);
 
@@ -36,9 +38,8 @@ use app\controllers\Dates;*/
         }
 
         public function weekDays(array $data):int{
-            $this->date1 = new DateTime($data['startdate'], new DateTimeZone($data['startdate-timezone']));
-            $this->date2 = new DateTime($data['enddate'], new DateTimeZone($data['enddate-timezone']));
-
+            $this->setUp($data);
+            
             $days = 0;
             $weekend = ['Sat', 'Sun'];
 
