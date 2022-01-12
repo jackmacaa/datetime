@@ -1,6 +1,7 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
 <div class="container">
+    <?php flash('post_message'); ?>
     <h1>Difference</h1>
     <a href="<?= URLROOT; ?>/dates">Back</a>
     <div class="card card-body bg-light mt-5">
