@@ -6,6 +6,8 @@
      * bind values
      * return rows and results
      */
+/*namespace app\libraries;*/
+
     class Database
     {
         private $host = DB_HOST;
