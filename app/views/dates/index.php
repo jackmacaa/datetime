@@ -51,11 +51,13 @@
             </div>
             <p class="card-text">created on: <?= $post->postCreated; ?> By user: <?= $post->name?></p>
 
-            <?php if($post->id == $_SESSION['user_id']) : ?>
-                <a href="<?= URLROOT; ?>/dates/edit/<?= $post->postId; ?>" class="btn btn-dark mb-1">Edit</a>
-                <form action="<?= URLROOT; ?>/dates/delete/<?= $post->postId; ?>" class="pull-right" method="post">
-                    <input type="submit" value="delete" class="btn btn-danger center">
-                </form>
+            <?php if(!empty($_SESSION['user_id'])) : ?>
+                <?php if($post->id == $_SESSION['user_id']) : ?>
+                    <a href="<?= URLROOT; ?>/dates/edit/<?= $post->postId; ?>" class="btn btn-dark mb-1">Edit</a>
+                    <form action="<?= URLROOT; ?>/dates/delete/<?= $post->postId; ?>" class="pull-right" method="post">
+                        <input type="submit" value="delete" class="btn btn-danger center">
+                    </form>
+                <?php endif; ?>
             <?php endif; ?>
         </div>
     <?php endforeach; ?>

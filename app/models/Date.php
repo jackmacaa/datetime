@@ -13,6 +13,7 @@ use app\controllers\Dates;*/
             $this->db =  new Database;
         }
 
+        // DB FUNCS
         public function getPosts(){
             $this->db->query('SELECT *,
                                 posts.id as postId,
@@ -77,6 +78,19 @@ use app\controllers\Dates;*/
             }
         }
 
+        public function deletePost($id){
+            $this->db->query('DELETE FROM posts WHERE id = :id');
+
+            $this->db->bind(':id', $id);
+
+            if($this->db->execute()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        // DATE calc FUNCS
         public function setUp($data){
             $this->date1 = new DateTime($data['startdate'], new DateTimeZone($data['startdate-timezone']));
             $this->date2 = new DateTime($data['enddate'], new DateTimeZone($data['enddate-timezone']));

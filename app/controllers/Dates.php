@@ -172,4 +172,18 @@ use app\models\Date;*/
                 $this->view('dates/edit', $data);
             }
         }
+
+        public function delete($id){
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                if($this->dateModel->deletePost($id)){
+                    flash('post_message', 'Post removed');
+                    redirect('dates');
+                }else{
+                    die('Somthine whent rong');
+                }
+
+            }else{
+                redirect('dates');
+            }
+        }
     }
